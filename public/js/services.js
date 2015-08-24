@@ -2,7 +2,7 @@ var services = angular.module('app.services',['ngResource']);
 
 services.factory('ProductsFactory', function($resource){
   return $resource('/api/products',{},{
-      show: { method: 'GET', isArray: true}
+      query: { method: 'GET', isArray: true}
   });
 });
 
