@@ -1,13 +1,13 @@
 <div class="products">
   <div class="container">        <!-- Page Header -->
     <div class="row">
-        <div class="col-md-3">
+        <div ng-repeat="product in products"class="col-md-3">
             <div class="product-image">
-              <img class="img-responsive img-rounded" src="img/frock.jpg"  alt="">
+              <img class="img-responsive img-rounded" ng-src="img/{{product.pr_img[0]}}.jpg"  alt="">
             </div>
             <div class="product-info text-center">
-              <p><strong>Tremaine</strong></p>
-              <p>Tremaine</p>
+              <p><strong>{{product.pr_product_name}}</strong></p>
+              <p>{{product.pr_price}}</p>
               <a href="/product/{{product._id}}"><strong>Buy now</strong></a>
             </div>
         </div>

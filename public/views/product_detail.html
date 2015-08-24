@@ -1,0 +1,24 @@
+<div class="product-detail">
+  <div class="container">
+    <div class="row">
+          <div class="col-md-5">
+              <div class="product-image-detail">
+                <img class="img-responsive" ng-src="img/{{product.pr_img[1]}}.jpg" alt="">
+              </div>
+          </div>
+          <div class="col-md-7">
+              <h3>{{product.pr_product_name}}</h3>
+              <hr>
+              <h4>Price <strong>{{product.pr_price | currency}}</strong></h4>
+              <p>Color {{product.pr_color[0]}}
+              </p>
+              <p>Available in <strong>{{product.pr_size[0]}}</strong> </p>
+              <p><strong>{{product.pr_stock_remain}}</strong> left in stock </p>
+              <p>{{product.pr_description}}</p>
+              <a class="btn btn-primary" href="#">Buy Now <span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a class="btn btn-primary" href="#">Add to Cart <span class="glyphicon glyphicon-chevron-right"></span></a>
+          </div>
+    </div>
+  </div>
+
+</div>
