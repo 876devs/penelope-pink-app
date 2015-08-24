@@ -1,7 +1,8 @@
-var Product = require('./models/db.js');
+var Product = require('./models/db').Product;
+
 module.exports = function(app){
     app.get('/api/products', function(req, res){
-      Product.find(function(err, products){
+      Product.find({pr_stock_remain: {$gt: 0}}, function(err, products){
         if(err || !products){
             res.send([]);
         }else{
