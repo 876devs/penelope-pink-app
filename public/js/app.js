@@ -1,1 +1,2 @@
-angular.module('penelope-pink', ['ngRoute', 'routes', 'HomeCtrl', 'ProductCtrl', 'LoginCtrl','app.services']);
+angular.module('penelope-pink', ['ngRoute', 'routes', 'HomeCtrl',
+'ProductCtrl', 'LoginCtrl', 'AdminCtrl','app.services']);
