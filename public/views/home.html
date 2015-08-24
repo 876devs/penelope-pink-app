@@ -6,9 +6,9 @@
               <img class="img-responsive img-rounded" ng-src="img/{{product.pr_img[0]}}.jpg"  alt="">
             </div>
             <div class="product-info text-center">
-              <p><strong>{{product.pr_product_name}}</strong></p>
-              <p>{{product.pr_price}}</p>
-              <a href="/product/{{product._id}}"><strong>Buy now</strong></a>
+              <p class="call-to-action">{{product.pr_product_name}}</p>
+              <p><strong>{{product.pr_price | currency}}</strong></p>
+              <a href="/product/{{product._id}}" class="accent call-to-action">buy now</a>
             </div>
         </div>
     </div>
