@@ -1,15 +1,26 @@
 <div class="products">
-  <div class="container">        <!-- Page Header -->
+  <div class="container">
     <div class="row">
-        <div ng-repeat="product in products"class="col-md-3">
-            <div class="product-image">
-              <img class="img-responsive img-rounded" ng-src="img/{{product.pr_img[0]}}.jpg"  alt="">
-            </div>
-            <div class="product-info text-center">
-              <p class="call-to-action">{{product.pr_product_name}}</p>
-              <p><strong>{{product.pr_price | currency}}</strong></p>
-              <a href="/product/{{product._id}}" class="accent call-to-action">buy now</a>
-            </div>
+        <div class="col-md-2">
+          <div class="panel panel-default">
+          <div class="panel-heading">Categories</div>          <!-- List group -->
+          <ul class="list-group">
+          <a href="" class="list-group-item">Dresses</a>
+          </ul>
         </div>
+        </div>
+        <div class="col-md-10">
+          <div ng-repeat="product in products" class="col-md-3">
+              <div class="product-image">
+                <img class="img-responsive img-rounded" ng-src="img/{{product.pr_img[0]}}.jpg"  alt="">
+              </div>
+              <div class="product-info text-center">
+                <p class="product-title">{{product.pr_product_name}}</p>
+                <p><strong>{{product.pr_price | currency}}</strong></p>
+                <a href="/product/{{product._id}}" class="accent">Buy Now</a>
+              </div>
+          </div>
+        </div>
+
     </div>
 </div>
