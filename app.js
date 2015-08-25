@@ -3,6 +3,8 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var logger = require('morgan');
+var product_routes = require('./app/routes/product/product_routes');
+var index_route = require('./app/routes/index');
 
 var port = process.env.PORT || 8080;
 
@@ -20,12 +22,11 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 // set the static files location /public/img will be /img for users
 app.use(express.static(__dirname + '/public'));
 
-require('./app/routes')(app); // configure our routes
+app.use('/api', product_routes);
+app.use('/', index_route);
 
 app.listen(port);
 
-// shoutout to the user
 console.log('Magic happens on port ' + port);
 
-// expose app
 exports = module.exports = app;

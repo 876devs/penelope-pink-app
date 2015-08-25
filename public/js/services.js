@@ -11,3 +11,9 @@ services.factory('ProductFactory', function($resource){
       show: { method: 'GET', params: {id: '@id'}}
   });
 });
+
+services.factory('CreateProductFactory', function($resource){
+  return $resource('/api/product',{},{
+      create: { method: 'POST'}
+  });
+});

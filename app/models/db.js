@@ -9,7 +9,9 @@ var ProductSchema = new Schema({
   pr_price: String,
   pr_stock_remain: {type: Number, required:true, default: 1},
   pr_size: [{type: String, required: true}],
-  pr_color: [{type: String}]
+  pr_color: [{type: String}],
+  pr_category: [String],
+  pr_created_on: {type: Date, default: Date.now}
 });
 
 exports.Product = mongoose.model('Product', ProductSchema);
