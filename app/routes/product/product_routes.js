@@ -7,5 +7,6 @@ var upload = multer({ dest: './public/images/' });
 router.get('/products', Product.getProducts);
 router.get('/product/:id', Product.getProduct);
 router.post('/product', upload.array('image'), Product.createProduct);
+router.get('/sign_s3', Product.sign);
 
 module.exports = router;

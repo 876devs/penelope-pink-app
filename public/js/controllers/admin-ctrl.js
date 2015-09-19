@@ -65,19 +65,42 @@ angular.module('AdminCtrl', [])
         {
           formData.append(key, $scope.product[key]);
         }
-        $http.post('/api/product', formData, {
-            transformRequest: angular.identity,
-            headers: {'Content-Type': undefined}
-        })
-        .success(function(){
-          console.log('Done')
-          resetForm();
-          toggleBtn();
-          loadProducts();
-        })
-        .error(function(){
+        // $http.post('/api/sign_s3', formData, {
+        //     transformRequest: angular.identity,
+        //     headers: {'Content-Type': undefined}
+        // })
+        // .success(function(){
+        //   console.log('Done')
+        //   resetForm();
+        //   toggleBtn();
+        //   loadProducts();
+        // })
+        // .error(function(){
+        //
+        // });
+        var params = {file_name:"name", file_type:"jpg"}
+        $http({
+              url: '/api/sign_s3',
+              method: "GET",
+              params: params
+        }).success(function(response){ console.log(response);
+          //Upload file now
+          $http({
+              url: response.data.signed_request,
+              method: "PUT",
+              headers: {'Content-Type':file.type},
+              data: $scope.files[0]
+          }).success(function(response){
+            console.log('File uploaded');
+          }).error(function(error){
+            console.log('No bueno');
+            console.log(error);
+          })
+        }).error(function(error){ console.log('Error'); });
+        // $http.get('/api/sign_s3', params: {file_name:"image", file_type:"jpg"})
+        //     .success(function(response){ console.log(response); })
+        //     .error(function(error){ console.log('Error'); });
 
-        });
   };
 
   function resetForm(){
