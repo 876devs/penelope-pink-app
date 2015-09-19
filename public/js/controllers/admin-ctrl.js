@@ -88,7 +88,7 @@ angular.module('AdminCtrl', [])
           $http({
               url: response.data.signed_request,
               method: "PUT",
-              headers: {'Content-Type':file.type},
+              headers: {'Content-Type':params.file_type},
               data: $scope.files[0]
           }).success(function(response){
             console.log('File uploaded');
