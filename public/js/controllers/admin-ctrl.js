@@ -75,7 +75,7 @@ angular.module('AdminCtrl', [])
               method: "GET",
               params: params
         }).success(function(response){
-          console.log(reponse.data);
+          console.log(response.data);
           //Upload file now
           $http({
               url: response.data.signed_request,
