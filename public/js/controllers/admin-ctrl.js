@@ -10,13 +10,15 @@ angular.module('AdminCtrl', [])
     };
 
   loadProducts();
+  $scope.file_upload = false;
   $scope.selectedsizes = [];
   $scope.stock = [];
-  $scope.addMore = false;
+  $scope.itemAdded = false;
   $scope.addProduct = false;
+  $scope.submitting = false;
   $scope.button_text = 'Add Product';
   $scope.files = [];
-  $scope.product = {pr_stock_details: []};
+  $scope.product = {};
   $scope.sizes = ['XL'];
   $scope.colors = ['blue'];
   $scope.categories = ['Dress'];
@@ -58,19 +60,21 @@ angular.module('AdminCtrl', [])
       $scope.addMore = true;
       $scope.col_size = "col-md-2";
     }
-
   }
 
   $scope.addStock = function(){
+    $scope.itemAdded = true;
     $scope.item = {st_size: $scope.product.pr_size, st_color: $scope.product.pr_color, st_quantity: $scope.product.pr_stock_remain};
     $scope.product.pr_stock_details.push($scope.item);
   }
 
-  $scope.test = function(){
-    if($scope.product.pr_size != " "){
-      $scope.selectedsizes = $scope.product.pr_size;
-    }
+  $scope.removeStock = function(index_of_stock){
+      $scope.product.pr_stock_details.splice(index_of_stock,1);
+      if($scope.product.pr_stock_details.length === 0){
+        $scope.itemAdded = false;
+      }
   }
+
   $scope.showProductForm = function(){
       toggleBtn();
   };
@@ -78,10 +82,9 @@ angular.module('AdminCtrl', [])
   $scope.updateOrder = function(order){
     console.log(order);
   };
-  $scope.save =  function(){
-      console.log($scope.product);
-  };
+
   $scope.saveProduct = function(){
+        $scope.submitting = true;
         var params = {file_type:"jpg"}
         $http({
               url: '/api/sign_s3',
@@ -103,6 +106,7 @@ angular.module('AdminCtrl', [])
               resetForm();
               toggleBtn();
               loadProducts();
+              $scope.file_upload = false;
          })
           .error(function(error){
             console.log('File not upoaded');

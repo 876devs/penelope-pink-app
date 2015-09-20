@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-7">
-    <form class="form-product" name="productForm" novalidate>
+    <form class="form-product" name="productForm" novalidate ng-disabled="submitting">
       <div class="form-group">
         <input
         type="text"
@@ -16,6 +16,7 @@
         placeholder="Enter Product Description"
         ng-model="product.pr_description"></textarea>
       </div>
+
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -64,11 +65,29 @@
             <button type="button" class="btn btn-default" ng-click="addStock();"> Add</button>
         </div>
       </div>
-
-
-
-
-
+      <div class="form-group" ng-show="itemAdded">
+        <div class="panel panel-default" >
+            <table class="table">
+              <table class="table table-striped table-condensed" >
+                <thead>
+                  <tr>
+                    <th>Size</th>
+                    <th>Color</th>
+                    <th>Quantity</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in product.pr_stock_details">
+                   <td>{{item.st_size}}</td>
+                   <td>{{item.st_color}}</td>
+                   <td>{{item.st_quantity}}</td>
+                   <td><button class"btn btn-default" ng-click="removeStock($index)"><i class="fa fa-times"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+        </div>
       <div class="form-group">
         <input type="file"
          class="form-control"
@@ -79,9 +98,10 @@
 
      <button class="btn btn-default" ng-click="cancel();">Cancel</button>
       <button class="btn btn-default" ng-click="saveProduct();">Save</button>
+        <i class="fa fa-spinner fa-spin fa-lg" ng-show="file_upload" ></i>
     </form>
   </div>
   <div class="col-md-5">
-    <p ng-repeat="size in selectedsizes">Size: {{size}}</p>
+
   </div>
 </div>
