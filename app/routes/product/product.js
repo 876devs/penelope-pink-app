@@ -62,7 +62,7 @@ exports.sign = function(req, res){
         else{
             var return_data = {
                 signed_request: data,
-                url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/images/'+file_name
+                url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+file_name
             };
             res.send({data:return_data});
         }
