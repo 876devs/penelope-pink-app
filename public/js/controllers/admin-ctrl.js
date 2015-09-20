@@ -58,32 +58,23 @@ angular.module('AdminCtrl', [])
 
   $scope.saveProduct = function(){
     var formData = new FormData();
-        for (var i in $scope.files) {
-            formData.append("image", $scope.files[i]);
-        }
-        for(var key in $scope.product)
-        {
-          formData.append(key, $scope.product[key]);
-        }
-        // $http.post('/api/sign_s3', formData, {
-        //     transformRequest: angular.identity,
-        //     headers: {'Content-Type': undefined}
-        // })
-        // .success(function(){
-        //   console.log('Done')
-        //   resetForm();
-        //   toggleBtn();
-        //   loadProducts();
-        // })
-        // .error(function(){
-        //
-        // });
-        var params = {file_name:"name", file_type:"jpg"}
+        // for (var i in $scope.files) {
+        //     formData.append("image", $scope.files[i]);
+        // }
+        // for(var key in $scope.product)
+        // {
+        //   formData.append(key, $scope.product[key]);
+        // }
+        // $http({ url: '/api/product', data:$scope.product, method: 'POST'})
+        // .success(function(response){ console.log('Sent');})
+        // .error(function(response){ console.log('No bueno');});
+
+        var params = {file_type:"jpg"}
         $http({
               url: '/api/sign_s3',
               method: "GET",
               params: params
-        }).success(function(response){ console.log(response);
+        }).success(function(response){
           //Upload file now
           $http({
               url: response.data.signed_request,
@@ -91,16 +82,18 @@ angular.module('AdminCtrl', [])
               headers: {'Content-Type':params.file_type},
               data: $scope.files[0]
           }).success(function(response){
-            console.log('File uploaded');
+            $scope.product.pr_img = response.data.url;
+            $http({ url: '/api/product', data:$scope.product, method: 'POST'})
+            .success(function(response){ console.log('Product created');})
+            .error(function(response){ console.log('Product not created');});
+              resetForm();
+              toggleBtn();
+              loadProducts();
           }).error(function(error){
-            console.log('No bueno');
+            console.log('File not upoaded');
             console.log(error);
           })
-        }).error(function(error){ console.log('Error'); });
-        // $http.get('/api/sign_s3', params: {file_name:"image", file_type:"jpg"})
-        //     .success(function(response){ console.log(response); })
-        //     .error(function(error){ console.log('Error'); });
-
+        }).error(function(error){ console.log('Error with s3'); });
   };
 
   function resetForm(){
