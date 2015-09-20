@@ -75,7 +75,8 @@ angular.module('AdminCtrl', [])
               method: "GET",
               params: params
         }).success(function(response){
-          console.log(response.data);
+          //console.log(response.data);
+          $scope.product.pr_img = response.data.url;
           //Upload file now
           $http({
               url: response.data.signed_request,
@@ -83,7 +84,7 @@ angular.module('AdminCtrl', [])
               headers: {'Content-Type':params.file_type},
               data: $scope.files[0]
           }).success(function(response){
-            $scope.product.pr_img = response.data.url;
+
             $http({ url: '/api/product', data:$scope.product, method: 'POST'})
             .success(function(response){ console.log('Product created');})
             .error(function(response){ console.log('Product not created');});
