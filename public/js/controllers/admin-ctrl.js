@@ -4,18 +4,19 @@ angular.module('AdminCtrl', [])
     function loadProducts(){
       ProductsFactory.query({limit: 0}, function(products){
           $scope.products = products;
-      }, function(error){
+        }, function(error){
         $scope.products = [];
       });
     };
 
-    loadProducts();
-
-
+  loadProducts();
+  $scope.selectedsizes = [];
+  $scope.stock = [];
+  $scope.addMore = false;
   $scope.addProduct = false;
   $scope.button_text = 'Add Product';
   $scope.files = [];
-  $scope.product = {};
+  $scope.product = {pr_stock_details: []};
   $scope.sizes = ['XL'];
   $scope.colors = ['blue'];
   $scope.categories = ['Dress'];
@@ -48,6 +49,28 @@ angular.module('AdminCtrl', [])
     }
   }
 
+  $scope.setAddmore = function(){
+    var num = parseInt($scope.product.pr_stock_remain);
+    if(num === 1 || isNaN(num)){
+        $scope.addMore = false;
+        $scope.col_size = "col-md-4";
+    }else if(num > 1){
+      $scope.addMore = true;
+      $scope.col_size = "col-md-2";
+    }
+
+  }
+
+  $scope.addStock = function(){
+    $scope.item = {st_size: $scope.product.pr_size, st_color: $scope.product.pr_color, st_quantity: $scope.product.pr_stock_remain};
+    $scope.product.pr_stock_details.push($scope.item);
+  }
+
+  $scope.test = function(){
+    if($scope.product.pr_size != " "){
+      $scope.selectedsizes = $scope.product.pr_size;
+    }
+  }
   $scope.showProductForm = function(){
       toggleBtn();
   };
@@ -55,27 +78,16 @@ angular.module('AdminCtrl', [])
   $scope.updateOrder = function(order){
     console.log(order);
   };
-
+  $scope.save =  function(){
+      console.log($scope.product);
+  };
   $scope.saveProduct = function(){
-    var formData = new FormData();
-        // for (var i in $scope.files) {
-        //     formData.append("image", $scope.files[i]);
-        // }
-        // for(var key in $scope.product)
-        // {
-        //   formData.append(key, $scope.product[key]);
-        // }
-        // $http({ url: '/api/product', data:$scope.product, method: 'POST'})
-        // .success(function(response){ console.log('Sent');})
-        // .error(function(response){ console.log('No bueno');});
-
         var params = {file_type:"jpg"}
         $http({
               url: '/api/sign_s3',
               method: "GET",
               params: params
         }).success(function(response){
-          //console.log(response.data);
           $scope.product.pr_img = response.data.url;
           //Upload file now
           $http({
@@ -91,7 +103,8 @@ angular.module('AdminCtrl', [])
               resetForm();
               toggleBtn();
               loadProducts();
-          }).error(function(error){
+         })
+          .error(function(error){
             console.log('File not upoaded');
             console.log(error);
           })

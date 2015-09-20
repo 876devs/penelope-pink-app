@@ -12,10 +12,10 @@
   <tbody>
     <tr ng-repeat="product in products">
     <td>{{product.pr_product_name}}</td>
-     <td>{{product.pr_price}}</td>
+     <td>{{product.pr_price | currency}}</td>
      <td>{{product.pr_stock_remain}}</td>
-     <td></td>
-     <td></td>
+     <td>{{product.pr_size | json }}</td>
+     <td>{{product.pr_color | json }}</td>
      <td>{{product.pr_created_on | date}}</td>
      </tr>
   </tbody>
