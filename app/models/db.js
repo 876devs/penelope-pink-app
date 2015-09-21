@@ -19,8 +19,18 @@ var ProductSchema = new Schema({
   pr_stock_details: [StockSchema]
 });
 
+var OrderSchema = new Schema({
+  or_created: {type: Date, default: Date.now},
+  or_first_name: {type: String, required: true},
+  or_last_name: {type: String, required : true},
+  or_contact: {type: String, required: true},
+  or_email: {type: String, required: true},
+  pr_product: [{required: true, type: Schema.Types.ObjectId, ref: "Product"}]
+});
+
 exports.Product = mongoose.model('Product', ProductSchema);
 exports.Stock = mongoose.model('Stock', StockSchema);
+exports.Order = mongoose.model('Order', OrderSchema);
 
 // module.exports = mongoose.model('User', {
 //     us_password: {type: String, required: true},

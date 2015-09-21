@@ -2,6 +2,14 @@ body{
   font-family: 'PT Sans', sans-serif;
   letter-spacing: 1px;
 }
+.color-list{
+  display: inline;
+}
+
+.order-amount{
+  margin-left: 10px;
+  margin-right:10px;
+}
 .logo{
   width: 100px;
   height: 30px;
