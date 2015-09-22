@@ -1,6 +1,6 @@
 angular.module('AdminCtrl', [])
-.controller('AdminController', ['$scope', '$http', 'ProductsFactory',
- function($scope, $http, ProductsFactory) {
+.controller('AdminController', ['$scope', '$http', 'ProductsFactory', 'OrdersFactory',
+ function($scope, $http, ProductsFactory, OrdersFactory) {
     function loadProducts(){
       ProductsFactory.query({limit: 0}, function(products){
           $scope.products = products;
@@ -8,6 +8,13 @@ angular.module('AdminCtrl', [])
         $scope.products = [];
       });
     };
+
+    OrdersFactory.query({limit: 0}, function(orders){
+      $scope.orders = orders;
+    },function(error){
+      $scope.orders = [];
+    });
+
 
   loadProducts();
   $scope.file_upload = false;
@@ -19,28 +26,12 @@ angular.module('AdminCtrl', [])
   $scope.button_text = 'Add Product';
   $scope.files = [];
   $scope.product = {};
-  $scope.sizes = ['XL'];
-  $scope.colors = ['blue'];
+  $scope.product.pr_stock_details = [];
+  $scope.sizes = ['XL', 'SM'];
+  $scope.colors = ['Blue', 'White'];
   $scope.categories = ['Dress'];
   $scope.status = ['Pending', 'Delivered', 'Cancelled'];
-  $scope.orders = [{ or_date: "June 23, 2015",
-                    or_name: "First",
-                    or_contact: "8764477877",
-                    or_product:"Black Frock",
-                    or_size: "X",
-                    or_status: "Pending"},
-                    { or_date: "June 23, 2015",
-                      or_name: "second",
-                      or_contact: "8764477877",
-                      or_product:"Black Frock",
-                      or_size: "X",
-                      or_status: "Pending"},
-                    { or_date: "June 23, 2015",
-                      or_name: "third",
-                      or_contact: "8764477877",
-                      or_product:"Black Frock",
-                      or_size: "X",
-                      or_status: "Pending"}];
+  $scope.orders =
 
   function toggleBtn(){
     $scope.addProduct = !$scope.addProduct;

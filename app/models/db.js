@@ -21,11 +21,16 @@ var ProductSchema = new Schema({
 
 var OrderSchema = new Schema({
   or_created: {type: Date, default: Date.now},
-  or_first_name: {type: String, required: true},
-  or_last_name: {type: String, required : true},
-  or_contact: {type: String, required: true},
-  or_email: {type: String, required: true},
-  pr_product: [{required: true, type: Schema.Types.ObjectId, ref: "Product"}]
+  // or_first_name: {type: String, required: true},
+  // or_last_name: {type: String, required : true},
+  // or_contact: {type: String, required: true},
+  // or_email: {type: String, required: true},
+  pr_product: [{required: true, type: Schema.Types.ObjectId, ref: "Product"}],
+  or_value: {type: String, required: true},
+  or_color: {type: String, required: true},
+  or_quantity: {type: String, required: true},
+  or_size: {type: String, required: true},
+  or_status: {type: String, required: true, default: 'Pending'}
 });
 
 exports.Product = mongoose.model('Product', ProductSchema);

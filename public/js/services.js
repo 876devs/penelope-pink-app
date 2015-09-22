@@ -17,3 +17,15 @@ services.factory('CreateProductFactory', function($resource){
       create: { method: 'POST'}
   });
 });
+
+services.factory('OrderFactory', function($resource){
+    return $resource('/api/order',{},{
+        create: {method: 'POST'}
+    });
+})
+
+services.factory('OrdersFactory', function($resource){
+    return $resource('/api/orders',{},{
+        query: {method: 'GET', isArray: true}
+    });
+})

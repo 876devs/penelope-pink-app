@@ -12,21 +12,27 @@
                   <thead>
                     <tr>
                       <th>Order Date</th>
-                      <th>Name</th>
-                      <th>Contact</th>
                       <th>Product Name</th>
                       <th>Size</th>
+                      <th> Order Value </th>
+                      <th>
+                        Quantity Ordered
+                      </th>
                       <th>Status</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr ng-repeat="order in orders">
-                    <td>{{order.or_date}}</td>
-                     <td>{{order.or_name}}</td>
-                     <td>{{order.or_contact}}</td>
-                     <td>{{order.or_product}}</td>
+                    <td>{{order.or_created | date}}</td>
+                    <td>{{order.pr_product[0].pr_product_name}}</td>
                      <td>{{order.or_size}}</td>
+                     <td>
+                       {{order.or_value | currency}}
+                     </td>
+                     <td>
+                       {{order.or_quantity}}
+                     </td>
                      <td><select class="form-control" ng-model="order.or_status">
                           <option
                           ng-repeat="order_status in status" value="{{order_status}}">{{order_status}}</option>
