@@ -1,0 +1,26 @@
+{
+  "name": "penelope",
+  "version": "1",
+  "homepage": "https://github.com/heroku/node-js-getting-started",
+  "authors": [
+    "Tremaine Buchanan <tremainekbuchanan@gmail.com>"
+  ],
+  "description": "Shopping app",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "angular-messages": "~1.4.4",
+    "angular-resource": "~1.4.4",
+    "angular-route": "~1.4.4",
+    "bootstrap": "~3.3.5"
+  }
+}

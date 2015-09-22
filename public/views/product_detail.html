@@ -1,0 +1,53 @@
+<div class="product-detail">
+  <div class="container">
+    <div class="row">
+          <div class="col-md-5">
+              <div class="product-image-detail">
+                <img class="img-responsive" ng-src="{{product.pr_img[0]}}" alt="">
+              </div>
+          </div>
+          <div class="col-md-7">
+              <h3>{{product.pr_product_name}}</h3>
+              <hr>
+              <h4>Price <strong>{{product.pr_price | currency}}</strong></h4>
+              <p>Color</p>
+              <div class="product-color">
+                <label class="radio-inline" ng-repeat="color in product.pr_stock_details">
+                  <input type="radio"
+                  name="color_choice"
+                  ng-model="order.or_color"
+                  value = "{{color.st_color}}"
+                  ng-change="selectedColor(color.st_color)">{{color.st_color}}
+                </label>
+              </div>
+
+              <p>Available in</p>
+              <div class="product-size">
+                <label class="radio-inline" ng-repeat="size in product.pr_stock_details">
+                  <input type="radio"
+                  name="size_choice"
+                  ng-model="order.or_size"
+                  value = "{{size.st_size}}">{{size.st_size}}
+                </label>
+              </div>
+
+              <div class="order-quantity">
+                <p>
+                  Quantity
+                </p>
+
+                <button class="btn btn-default" ng-click="decreaseQty()" ng-disabled="!quantity_selected" >
+                <i class="fa fa-minus"></i></button>
+                  <span class="order-amount">{{order.or_quantity}}</span>
+                <button class="btn btn-default" ng-click="increaseQty()"><i class="fa fa-plus"></i></button>
+              </div>
+              <div class="product-description">
+                <p>{{product.pr_description}}</p>
+              </div>
+              <button class="btn btn-default btn-lg" ng-click="addToCart()">ADD TO CART</button>
+              <!-- <a href="#" class="accent call-to-action">add to cart <span class="glyphicon glyphicon-chevron-right"></span></a> -->
+          </div>
+    </div>
+  </div>
+
+</div>

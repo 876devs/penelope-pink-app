@@ -1,0 +1,50 @@
+<div class="admin">
+  <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-3 col-md-2 sidebar">
+            <ng-include src="'./views/admin_sidebar.html'"></ng-include>
+          </div>
+
+          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">Orders</h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed">
+                  <thead>
+                    <tr>
+                      <th>Order Date</th>
+                      <th>Product Name</th>
+                      <th>Size</th>
+                      <th> Order Value </th>
+                      <th>
+                        Quantity Ordered
+                      </th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="order in orders">
+                    <td>{{order.or_created | date}}</td>
+                    <td>{{order.pr_product[0].pr_product_name}}</td>
+                     <td>{{order.or_size}}</td>
+                     <td>
+                       {{order.or_value | currency}}
+                     </td>
+                     <td>
+                       {{order.or_quantity}}
+                     </td>
+                     <td><select class="form-control" ng-model="order.or_status">
+                          <option
+                          ng-repeat="order_status in status" value="{{order_status}}">{{order_status}}</option>
+                          </select>
+                        </td>
+                     <td><button type="button" class="btn btn-primary" ng-click="updateOrder(order);">Update Order</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+          </div>
+          </div>
+        </div>
+
+
+</div>

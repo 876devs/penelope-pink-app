@@ -1,0 +1,26 @@
+<div class="products">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-2">
+          <div class="panel panel-default">
+          <div class="panel-heading">Categories</div>          <!-- List group -->
+          <ul class="list-group">
+          <a href="" class="list-group-item">Dresses</a>
+          </ul>
+        </div>
+        </div>
+        <div class="col-md-10">
+          <div ng-repeat="product in products" class="col-md-3">
+              <div class="product-image">
+                <a href="/product/{{product._id}}"><img class="img-responsive img-rounded" ng-src="{{product.pr_img[0]}}"  alt=""></a> 
+              </div>
+              <div class="product-info text-center">
+                <p class="product-title">{{product.pr_product_name}}<br/>
+                  <strong>{{product.pr_price | currency}}</strong><br/>
+                  <a href="/product/{{product._id}}" class="accent">Buy Now</a></p>
+              </div>
+          </div>
+        </div>
+
+    </div>
+</div>
