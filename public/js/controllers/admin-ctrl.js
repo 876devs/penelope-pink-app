@@ -33,7 +33,7 @@ angular.module('AdminCtrl', [])
   $scope.status = ['Pending', 'Delivered', 'Cancelled'];
   $scope.orders =
 
-  function toggleBtn(){
+  toggleBtn = function(){
     $scope.addProduct = !$scope.addProduct;
     if($scope.button_text === 'Add Product'){
       $scope.button_text = 'Show Products';

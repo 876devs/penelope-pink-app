@@ -29,3 +29,9 @@ services.factory('OrdersFactory', function($resource){
         query: {method: 'GET', isArray: true}
     });
 })
+
+services.factory('UserFactory', function($resource){
+    return $resource('/api/users',{},{
+      show: {method: 'POST', isArray: true}
+    })
+});

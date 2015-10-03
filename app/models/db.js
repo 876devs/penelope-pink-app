@@ -33,10 +33,18 @@ var OrderSchema = new Schema({
   or_status: {type: String, required: true, default: 'Pending'}
 });
 
+var UserSchema = new Schema({
+    us_username: {type: String, required: true, unique: true},
+    us_password: {type: String, required: true},
+    us_first_name: {type: String, required: true},
+    us_last_name: {type: String, required: true},
+    us_email: {type: String, required: true}
+});
+
 exports.Product = mongoose.model('Product', ProductSchema);
 exports.Stock = mongoose.model('Stock', StockSchema);
 exports.Order = mongoose.model('Order', OrderSchema);
-
+exports.User = mongoose.model('User', UserSchema);
 // module.exports = mongoose.model('User', {
 //     us_password: {type: String, required: true},
 //     us_email: {type: String, required: true},
