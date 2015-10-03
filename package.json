@@ -32,5 +32,10 @@
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.0",
+    "nodemon": "^1.7.1"
+  }
 }
